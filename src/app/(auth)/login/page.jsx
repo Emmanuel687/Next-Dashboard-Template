@@ -30,6 +30,7 @@ export default function LoginPage() {
   const [password, setPassword] = useState('');
   const [remember, setRemember] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   // State variables End
 
   // Handle Login Start
@@ -166,18 +167,31 @@ export default function LoginPage() {
               {/* Email Input End */}
 
               {/* Password Input Start */}
-              <div >
+              <div>
                 <label className="text-sm text-gray-600">Password</label>
 
-                <div className="mt-1 w-full">
-                  <Password
+                <div className="relative mt-1">
+                  <input
+                    type={showPassword ? "text" : "password"}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    feedback={false}
-                    toggleMask
-                    className="w-full mt-1"
-
+                    placeholder="Enter your password"
+                    className="
+  w-full h-12 px-3 pr-10
+  text-sm
+  border border-gray-300 rounded-lg
+  focus:outline-none focus:ring-2 focus:ring-[#03b155]
+"
                   />
+
+                  {/* TOGGLE */}
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(p => !p)}
+                    className="absolute right-2 top-1/2 -translate-y-1/2 text-xs text-gray-500"
+                  >
+                    {showPassword ? "Hide" : "Show"}
+                  </button>
                 </div>
               </div>
               {/* Password Input End */}

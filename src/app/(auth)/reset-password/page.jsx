@@ -15,6 +15,8 @@ export default function ForgotPasswordPage() {
   const [password, setPassword] = useState('');
   const [confirm, setConfirm] = useState('');
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
 
   const BRAND = '#03b155';
 
@@ -185,31 +187,65 @@ export default function ForgotPasswordPage() {
                 </>
               )}
 
-              {/* RESET STEP (FIXED PASSWORD WIDTH ✔) */}
+              {/* RESET STEP (CLEAN + FULL WIDTH) */}
               {step === 'RESET' && (
                 <>
+                  {/* NEW PASSWORD */}
                   <div>
                     <label className="text-sm text-gray-600">New Password</label>
-                    <Password
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      feedback={false}
-                      toggleMask
-                      className="w-full mt-1"
-                      inputClassName="w-full"
-                    />
+
+                    <div className="relative mt-1">
+                      <input
+                        type={showPassword ? "text" : "password"}
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        placeholder="Enter new password"
+                        className="
+            w-full px-3 py-2 pr-10
+            text-sm
+            border border-gray-300 rounded-lg
+            focus:outline-none focus:ring-2 focus:ring-[#03b155]
+          "
+                      />
+
+                      {/* TOGGLE */}
+                      <button
+                        type="button"
+                        onClick={() => setShowPassword(p => !p)}
+                        className="absolute right-2 top-1/2 -translate-y-1/2 text-xs text-gray-500"
+                      >
+                        {showPassword ? "Hide" : "Show"}
+                      </button>
+                    </div>
                   </div>
 
+                  {/* CONFIRM PASSWORD */}
                   <div>
                     <label className="text-sm text-gray-600">Confirm Password</label>
-                    <Password
-                      value={confirm}
-                      onChange={(e) => setConfirm(e.target.value)}
-                      feedback={false}
-                      toggleMask
-                      className="w-full mt-1"
-                      inputClassName="w-full"
-                    />
+
+                    <div className="relative mt-1">
+                      <input
+                        type={showConfirm ? "text" : "password"}
+                        value={confirm}
+                        onChange={(e) => setConfirm(e.target.value)}
+                        placeholder="Confirm password"
+                        className="
+            w-full px-3 py-2 pr-10
+            text-sm
+            border border-gray-300 rounded-lg
+            focus:outline-none focus:ring-2 focus:ring-[#03b155]
+          "
+                      />
+
+                      {/* TOGGLE */}
+                      <button
+                        type="button"
+                        onClick={() => setShowConfirm(p => !p)}
+                        className="absolute right-2 top-1/2 -translate-y-1/2 text-xs text-gray-500"
+                      >
+                        {showConfirm ? "Hide" : "Show"}
+                      </button>
+                    </div>
                   </div>
 
                   <Button
