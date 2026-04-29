@@ -109,7 +109,7 @@ export const Sidebar = ({ user, sidebarOpen, toggleSidebar }) => {
             {!collapsed && (
               <div className="leading-tight">
                 <div className="text-sm font-semibold text-gray-900">
-                  GreenWheels ERP
+                  GreenWheels OS
                 </div>
                 <div className="text-[10px] text-gray-500">
                   Operations System

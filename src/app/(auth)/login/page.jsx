@@ -24,12 +24,15 @@ export default function LoginPage() {
   const toast = useRef(null);
   const router = useRouter();
 
+  // State variables Start
   const [org, setOrg] = useState(null);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [remember, setRemember] = useState(false);
   const [loading, setLoading] = useState(false);
+  // State variables End
 
+  // Handle Login Start
   const handleLogin = async () => {
     if (!org || !email || !password) {
       toast.current?.show({
@@ -49,23 +52,19 @@ export default function LoginPage() {
       summary: 'Access Granted',
       detail: 'Redirecting...',
     });
-
-    // ✅ Redirect to dashboard/home
     router.push('/');
   };
+  // Handle Login End
 
   return (
-    <div className="min-h-screen grid grid-cols-1 lg:grid-cols-2 bg-[#f7f8fa]">
+    <main className="min-h-screen grid grid-cols-1 lg:grid-cols-2 bg-[#f7f8fa]">
 
       <Toast ref={toast} />
+      {/* Left Hero Start */}
+      <section className="hidden lg:flex relative items-center justify-center overflow-hidden">
 
-      {/* ───────── LEFT HERO (CONSISTENT MODERN BACKGROUND) ───────── */}
-      <div className="hidden lg:flex relative items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-white via-[#f2fff6] to-[#e9f3ec]" />
 
-        {/* gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-white via-[#f2fff6] to-[#e9fcef]" />
-
-        {/* SVG blobs (MATCH forgot password style) */}
         <svg className="absolute w-[600px] h-[600px] top-[-200px] left-[-200px] opacity-30" viewBox="0 0 200 200">
           <circle cx="100" cy="100" r="100" fill="#03b155" />
         </svg>
@@ -90,12 +89,12 @@ export default function LoginPage() {
                 GreenWheels
               </div>
               <div className="text-xs tracking-widest text-gray-500">
-                ERP PLATFORM
+                OS PLATFORM
               </div>
             </div>
           </div>
 
-          {/* IMAGE */}
+          {/* IMAGE  Start*/}
           <div className="relative mx-auto w-full max-w-xl mb-10">
             <div className="relative h-[420px] rounded-3xl overflow-hidden shadow-2xl border border-white/40 bg-white">
 
@@ -110,20 +109,22 @@ export default function LoginPage() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent" />
             </div>
           </div>
+          {/* IMAGE  End*/}
 
           <h1 className="text-3xl font-bold text-gray-900 mb-3">
             Fleet Operations Management System
           </h1>
 
           <p className="text-sm text-gray-500 max-w-md mx-auto">
-            Unified ERP system for dispatch, payments, tracking, and fleet control across Africa.
+            Unified OS system for dispatch, payments, tracking, and fleet control across Africa.
           </p>
 
         </div>
-      </div>
+      </section>
+      {/* Left Hero End */}
 
-      {/* ───────── RIGHT FORM ───────── */}
-      <div className="flex items-center justify-center px-6 py-10">
+      {/* Right Form Start */}
+      <section className="flex items-center justify-center px-6 py-10">
 
         <div className="w-full max-w-md">
 
@@ -139,7 +140,7 @@ export default function LoginPage() {
           <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
 
             <div className="space-y-5">
-
+              {/* Organization Dropdown Start */}
               <div>
                 <label className="text-sm text-gray-600">Organization</label>
                 <Dropdown
@@ -150,7 +151,9 @@ export default function LoginPage() {
                   className="w-full mt-1"
                 />
               </div>
+              {/* Organization Dropdown End */}
 
+              {/* Email Input Start */}
               <div>
                 <label className="text-sm text-gray-600">Email</label>
                 <InputText
@@ -160,18 +163,26 @@ export default function LoginPage() {
                   className="w-full mt-1"
                 />
               </div>
+              {/* Email Input End */}
 
-              <div>
+              {/* Password Input Start */}
+              <div >
                 <label className="text-sm text-gray-600">Password</label>
-                <Password
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  feedback={false}
-                  toggleMask
-                  className="w-full mt-1"
-                />
-              </div>
 
+                <div className="mt-1 w-full">
+                  <Password
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    feedback={false}
+                    toggleMask
+                    className="w-full mt-1"
+
+                  />
+                </div>
+              </div>
+              {/* Password Input End */}
+
+              {/* Remember Checkbox Start */}
               <div className="flex items-center justify-between">
 
                 <div className="flex items-center gap-2">
@@ -193,7 +204,9 @@ export default function LoginPage() {
                 </Link>
 
               </div>
+              {/* Remember Checkbox End */}
 
+              {/* Sign In Button Start */}
               <Button
                 label="Sign in"
                 loading={loading}
@@ -201,17 +214,19 @@ export default function LoginPage() {
                 className="w-full"
                 style={{ background: BRAND, border: 'none' }}
               />
+              {/* Sign In Button End */}
 
             </div>
           </div>
 
           <div className="mt-6 text-xs text-gray-400 flex justify-between">
-            <span>ERP v4.2</span>
+            <span>OS v4.2</span>
             <span>Secure Access</span>
           </div>
 
         </div>
-      </div>
-    </div>
+      </section>
+      {/* Right Form End */}
+    </main>
   );
 }

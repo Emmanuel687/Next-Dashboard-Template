@@ -74,12 +74,10 @@ export default function ForgotPasswordPage() {
 
       <Toast ref={toast} />
 
-      {/* ───────── LEFT HERO (CONSISTENT WITH LOGIN) ───────── */}
+      {/* LEFT HERO */}
       <div className="hidden lg:flex relative items-center justify-center overflow-hidden">
-
         <div className="absolute inset-0 bg-gradient-to-br from-white via-[#f2fff6] to-[#e9fcef]" />
 
-        {/* SVG BLUR BLOBS */}
         <svg className="absolute w-[600px] h-[600px] top-[-200px] left-[-200px] opacity-30" viewBox="0 0 200 200">
           <circle cx="100" cy="100" r="100" fill="#03b155" />
         </svg>
@@ -89,24 +87,6 @@ export default function ForgotPasswordPage() {
         </svg>
 
         <div className="relative z-10 text-center max-w-md px-10">
-
-          <div className="flex items-center justify-center gap-3 mb-8">
-            <div
-              className="w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold shadow-md"
-              style={{ background: BRAND }}
-            >
-              GW
-            </div>
-            <div className="text-left">
-              <div className="text-xl font-bold text-gray-900">
-                GreenWheels
-              </div>
-              <div className="text-xs tracking-widest text-gray-500">
-                ERP PLATFORM
-              </div>
-            </div>
-          </div>
-
           <h1 className="text-3xl font-bold text-gray-900 mb-3">
             Secure Account Recovery
           </h1>
@@ -117,15 +97,13 @@ export default function ForgotPasswordPage() {
         </div>
       </div>
 
-      {/* ───────── RIGHT PANEL (GLASS STYLE) ───────── */}
+      {/* RIGHT PANEL */}
       <div className="flex items-center justify-center px-6 py-10">
 
-        <div className="w-full max-w-md relative">
+        <div className="w-full max-w-md">
 
-          {/* GLASS CARD */}
-          <div className="relative backdrop-blur-xl bg-white/70 border border-white/40 shadow-2xl rounded-3xl p-7">
+          <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
 
-            {/* HEADER */}
             <div className="mb-6">
               <h2 className="text-2xl font-semibold text-gray-900">
                 Reset Password
@@ -138,25 +116,12 @@ export default function ForgotPasswordPage() {
               </p>
             </div>
 
-            {/* SECURITY STRIP */}
-            <div
-              className="flex items-center gap-2 text-xs px-3 py-2 rounded-xl mb-5"
-              style={{
-                background: `${BRAND}10`,
-                color: BRAND,
-                border: `1px solid ${BRAND}30`,
-              }}
-            >
-              <span className="w-2 h-2 rounded-full" style={{ background: BRAND }} />
-              Secure · Encrypted · Verified Process
-            </div>
-
             {/* STEP INDICATOR */}
             <div className="flex gap-2 mb-6">
               {['EMAIL', 'OTP', 'RESET'].map((s) => (
                 <div
                   key={s}
-                  className="flex-1 h-1 rounded-full transition-all"
+                  className="flex-1 h-1 rounded-full"
                   style={{
                     background: step === s ? BRAND : '#e5e7eb'
                   }}
@@ -166,7 +131,7 @@ export default function ForgotPasswordPage() {
 
             <div className="space-y-5">
 
-              {/* EMAIL */}
+              {/* EMAIL STEP */}
               {step === 'EMAIL' && (
                 <>
                   <div>
@@ -189,7 +154,7 @@ export default function ForgotPasswordPage() {
                 </>
               )}
 
-              {/* OTP */}
+              {/* OTP STEP */}
               {step === 'OTP' && (
                 <>
                   <div>
@@ -220,7 +185,7 @@ export default function ForgotPasswordPage() {
                 </>
               )}
 
-              {/* RESET */}
+              {/* RESET STEP (FIXED PASSWORD WIDTH ✔) */}
               {step === 'RESET' && (
                 <>
                   <div>
@@ -231,6 +196,7 @@ export default function ForgotPasswordPage() {
                       feedback={false}
                       toggleMask
                       className="w-full mt-1"
+                      inputClassName="w-full"
                     />
                   </div>
 
@@ -242,6 +208,7 @@ export default function ForgotPasswordPage() {
                       feedback={false}
                       toggleMask
                       className="w-full mt-1"
+                      inputClassName="w-full"
                     />
                   </div>
 
@@ -258,7 +225,6 @@ export default function ForgotPasswordPage() {
             </div>
           </div>
 
-          {/* FOOTER */}
           <div className="mt-6 text-xs text-gray-400 flex justify-between px-2">
             <span>Secure Recovery System</span>
             <span>ERP v4.2</span>

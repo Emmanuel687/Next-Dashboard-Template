@@ -50,11 +50,13 @@ export const Topbar = ({ toggleSidebar, user, onLogout }) => {
   return (
     <header
       className="
-        h-[52px]
+        h-[55px]
         px-3
         flex items-center justify-between
-        bg-[#ffffff]
+    bg-white/80 backdrop-blur-xl
         border-b border-zinc-200
+            shadow-sm
+
       "
     >
 
@@ -69,7 +71,7 @@ export const Topbar = ({ toggleSidebar, user, onLogout }) => {
           ☰
         </button>
 
-        {/* SYSTEM BLOCK (clean ERP identity) */}
+        {/* SYSTEM BLOCK (clean OS identity) */}
         <div className="hidden md:flex items-center gap-3">
 
           {/* status dot */}
@@ -79,7 +81,7 @@ export const Topbar = ({ toggleSidebar, user, onLogout }) => {
 
             {/* TOP LINE */}
             <p className="text-xs font-semibold text-gray-900">
-              GreenWheels ERP
+              GreenWheels OS
             </p>
 
             {/* SECOND LINE */}
@@ -124,7 +126,11 @@ export const Topbar = ({ toggleSidebar, user, onLogout }) => {
           onClick={onLogout}
           className="p-2 rounded-lg hover:bg-red-50 group"
         >
-          <LogOut size={17} className="text-gray-600 group-hover:text-red-600" />
+          <LogOut
+          
+          
+
+          size={17} className="text-gray-600 group-hover:text-red-600" />
         </button>
 
         {/* AVATAR */}
@@ -141,7 +147,7 @@ export const Topbar = ({ toggleSidebar, user, onLogout }) => {
 
       </div>
 
-      {/* ───────── NOTIFICATIONS PANEL ───────── */}
+      {/* Notification Panel Start */}
       <OverlayPanel ref={op} className="w-80">
         <div className="p-2">
 
@@ -192,6 +198,7 @@ export const Topbar = ({ toggleSidebar, user, onLogout }) => {
 
         </div>
       </OverlayPanel>
+      {/* Notification Panel End */}  
 
     </header>
   );

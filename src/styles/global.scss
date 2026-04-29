@@ -4,3 +4,12 @@
 @use "./main.css";
 
 
+.p-password.p-password-full {
+  width: 100% !important;
+  display: flex;
+}
+
+.p-password.p-password-full input {
+  width: 100% !important;
+  flex: 1;
+}
