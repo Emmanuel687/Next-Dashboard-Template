@@ -27,7 +27,7 @@ export default function AppLayout({ children }) {
 
   const user = {
     name: "Emmanuel",
-    role: "ADMIN",
+    roles: ["*"],
   };
 
   return (
@@ -42,7 +42,7 @@ export default function AppLayout({ children }) {
       {/* Sidebar  End */}  
 
       {/* Main  */}
-      <div className="flex flex-col flex-1 overflow-hidden bg-[#f3f4f6]">
+      <div className="flex flex-col flex-1 overflow-hidden bg-[#f3f4f6] dark:bg-zinc-950">
         <Topbar toggleSidebar={toggleSidebar} user={user} onLogout={onLogout} />
 
 

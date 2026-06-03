@@ -1,5 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import { PrimeReactProvider } from "primereact/api";
+import { ThemeProvider } from "@/components/layout/ThemeProvider";
 import "../styles/global.scss";
 
 
@@ -26,7 +27,9 @@ export default function RootLayout({ children }) {
     >
       <body className="min-h-full flex flex-col">
         <PrimeReactProvider value={{ ripple: true }}>
-          {children}
+          <ThemeProvider>
+            {children}
+          </ThemeProvider>
         </PrimeReactProvider>
       </body>
     </html>
