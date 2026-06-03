@@ -122,11 +122,11 @@ function canSeeItem(item, userRoles) {
 
 function Tooltip({ label, children }) {
   return (
-    <div className="group/tip relative flex justify-center w-full">
+    <div className="group/tip relative inline-flex items-center justify-center">
       {children}
-      <div className="pointer-events-none absolute left-full ml-3 top-1/2 -translate-y-1/2 z-[99] px-2.5 py-1.5 rounded-md text-[12px] font-medium whitespace-nowrap bg-zinc-900 text-white shadow-lg opacity-0 group-hover/tip:opacity-100 transition-opacity duration-150">
+      <div className="pointer-events-none absolute left-full ml-2.5 top-1/2 -translate-y-1/2 z-[99] px-2.5 py-1.5 rounded-lg text-[12px] font-medium whitespace-nowrap bg-zinc-900 dark:bg-zinc-700 text-white shadow-xl opacity-0 group-hover/tip:opacity-100 transition-opacity duration-150">
         {label}
-        <span className="absolute right-full top-1/2 -translate-y-1/2 border-4 border-transparent border-r-zinc-900" />
+        <span className="absolute right-full top-1/2 -translate-y-1/2 border-[5px] border-transparent border-r-zinc-900 dark:border-r-zinc-700" />
       </div>
     </div>
   );
@@ -228,7 +228,7 @@ export const Sidebar = ({ user, sidebarOpen, toggleSidebar, alertCount = 0 }) =>
           className={`
             h-[58px] flex items-center shrink-0
             border-b border-zinc-100 dark:border-white/[0.06]
-            ${collapsed ? "justify-center px-2" : "px-3 justify-between"}
+            ${collapsed ? "justify-center" : "px-3 justify-between"}
           `}
         >
           <LogoPill collapsed={collapsed} />
@@ -248,6 +248,27 @@ export const Sidebar = ({ user, sidebarOpen, toggleSidebar, alertCount = 0 }) =>
             </button>
           )}
         </div>
+
+        {/* ── Expand pill — floats on the right edge of the header ── */}
+        {collapsed && (
+          <button
+            onClick={() => setCollapsed(false)}
+            title="Expand sidebar"
+            className="
+              absolute -right-3 top-4.25 z-10
+              hidden lg:flex w-6 h-6
+              items-center justify-center rounded-full
+              bg-white dark:bg-zinc-800
+              border border-zinc-200 dark:border-zinc-700
+              text-zinc-500 dark:text-zinc-400
+              shadow-sm hover:shadow-md
+              hover:text-zinc-900 dark:hover:text-zinc-100
+              transition-all duration-150
+            "
+          >
+            <ChevronRight size={11} />
+          </button>
+        )}
 
         {/* ── Nav ── */}
         <nav className="flex-1 overflow-y-auto overflow-x-hidden py-2 scrollbar-none">
@@ -276,7 +297,7 @@ export const Sidebar = ({ user, sidebarOpen, toggleSidebar, alertCount = 0 }) =>
                 )}
 
                 {(collapsed || isExpanded) && (
-                  <div className={collapsed ? "flex flex-col items-center gap-0.5 px-2" : "space-y-0.5"}>
+                  <div className={collapsed ? "flex flex-col items-center gap-0.5 w-full" : "space-y-0.5"}>
                     {visibleItems.map((item) => {
                       const Icon   = item.icon;
                       const active = isActive(item.href);
