@@ -42,7 +42,7 @@ export default function LoginPage() {
     await new Promise(r => setTimeout(r, 1200));
     setLoading(false);
     toast.current?.show({ severity: 'success', summary: 'Access Granted', detail: 'Redirecting...' });
-    router.push('/');
+    router.push('/dashboard');
   };
 
   return (

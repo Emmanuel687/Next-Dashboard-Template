@@ -2,7 +2,11 @@
   "permissions": {
     "allow": [
       "PowerShell(Get-ChildItem -Recurse \"c:\\\\Users\\\\USER\\\\Desktop\\\\OS\\\\greenwheels-os2\\\\src\" | Select-Object FullName | ForEach-Object { $_.FullName.Replace\\(\"c:\\\\Users\\\\USER\\\\Desktop\\\\OS\\\\greenwheels-os2\\\\src\\\\\", \"\"\\) })",
-      "PowerShell(cmd /c rename \"c:\\\\Users\\\\USER\\\\Desktop\\\\OS\\\\greenwheels-os2\\\\src\\\\app\\\\\\(app\\)\\\\dashboard\" \"\\(dashboard\\)\")"
+      "PowerShell(cmd /c rename \"c:\\\\Users\\\\USER\\\\Desktop\\\\OS\\\\greenwheels-os2\\\\src\\\\app\\\\\\(app\\)\\\\dashboard\" \"\\(dashboard\\)\")",
+      "Bash(mkdir -p \"c:/Users/USER/Desktop/OS/greenwheels-os2/src/app/\\(app\\)/\\(dashboard\\)/fleet/maintenance/[jobId]\")"
+    ],
+    "additionalDirectories": [
+      "c:\\Users\\USER\\Desktop\\OS\\greenwheels-os2\\src\\app\\(app)\\(dashboard)\\fleet\\maintenance"
     ]
   }
 }

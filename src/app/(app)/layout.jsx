@@ -31,7 +31,7 @@ export default function AppLayout({ children }) {
   };
 
   return (
-    <main className="flex h-full overflow-hidden">
+    <main className="flex h-screen overflow-hidden">
       {/* Sidebar  Start */}
       <Sidebar
         user={user}
@@ -46,7 +46,7 @@ export default function AppLayout({ children }) {
         <Topbar toggleSidebar={toggleSidebar} user={user} onLogout={onLogout} />
 
 
-        <main className="flex-1 overflow-y-auto p-6">
+        <main className="flex-1 overflow-y-auto p-3 sm:p-5 lg:p-6">
           {children}
         </main>
       </div>

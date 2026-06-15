@@ -139,14 +139,13 @@ function LogoPill({ collapsed }) {
   if (collapsed) {
     return (
       <Tooltip label="GreenWheels OS2">
-        {/* Just the bolt mark */}
-        <div
-          className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0"
-          style={{ background: BRAND }}
-        >
-          <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
-            <path d="M9 1L3.5 8.5H8L6 14L12.5 6H8L9 1Z" fill="white" />
-          </svg>
+        <div className="w-8 h-8 overflow-hidden shrink-0 flex items-center">
+          <img
+            src={LOGO_URL}
+            alt="GreenWheels"
+            className="h-8 w-auto max-w-none object-left object-contain"
+            style={{ minWidth: "200px", marginLeft: 0 }}
+          />
         </div>
       </Tooltip>
     );
@@ -228,50 +227,31 @@ export const Sidebar = ({ user, sidebarOpen, toggleSidebar, alertCount = 0 }) =>
           className={`
             h-[58px] flex items-center shrink-0
             border-b border-zinc-100 dark:border-white/[0.06]
-            ${collapsed ? "justify-center" : "px-3 justify-between"}
+            ${collapsed ? "px-3 justify-between" : "px-3 justify-between"}
           `}
         >
           <LogoPill collapsed={collapsed} />
 
-          {!collapsed && (
+          {!collapsed ? (
             <button
               onClick={() => setCollapsed(true)}
-              className="
-                hidden lg:flex w-[22px] h-[22px] items-center justify-center
-                rounded-[6px] shrink-0 ml-2
-                text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200
-                hover:bg-zinc-100 dark:hover:bg-white/[0.07]
-                transition-colors
-              "
+              className="hidden lg:flex shrink-0 ml-2 text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 transition-colors"
             >
-              <ChevronLeft size={13} />
+              <ChevronLeft size={15} />
+            </button>
+          ) : (
+            <button
+              onClick={() => setCollapsed(false)}
+              className="hidden lg:flex shrink-0 text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 transition-colors"
+            >
+              <ChevronRight size={15} />
             </button>
           )}
         </div>
 
-        {/* ── Expand pill — floats on the right edge of the header ── */}
-        {collapsed && (
-          <button
-            onClick={() => setCollapsed(false)}
-            title="Expand sidebar"
-            className="
-              absolute -right-3 top-4.25 z-10
-              hidden lg:flex w-6 h-6
-              items-center justify-center rounded-full
-              bg-white dark:bg-zinc-800
-              border border-zinc-200 dark:border-zinc-700
-              text-zinc-500 dark:text-zinc-400
-              shadow-sm hover:shadow-md
-              hover:text-zinc-900 dark:hover:text-zinc-100
-              transition-all duration-150
-            "
-          >
-            <ChevronRight size={11} />
-          </button>
-        )}
 
         {/* ── Nav ── */}
-        <nav className="flex-1 overflow-y-auto overflow-x-hidden py-2 scrollbar-none">
+        <nav className="flex-1 overflow-y-auto overflow-x-hidden py-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
           {NAV.map((section, si) => {
             if (section.module && !canSeeSection(section, userRoles)) return null;
             const visibleItems = section.items.filter((item) => canSeeItem(item, userRoles));

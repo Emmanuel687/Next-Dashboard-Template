@@ -1,9 +1,5 @@
-import React from 'react'
+import MaintenancePage from "@/modules/maintenance/MaintenancePage";
 
-const page = () => {
-  return (
-    <div>sdsdpage</div>
-  )
+export default function Page() {
+  return <MaintenancePage />;
 }
-
-export default page

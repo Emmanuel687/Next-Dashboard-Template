@@ -130,7 +130,7 @@ function NotificationPanel({ notifications, onClose, onClearAll }) {
   return (
     <div className="
       absolute right-0 top-[calc(100%+8px)] z-[100]
-      w-[360px] rounded-2xl overflow-hidden shadow-xl
+      w-[360px] max-w-[calc(100vw-16px)] rounded-2xl overflow-hidden shadow-xl
       bg-white dark:bg-zinc-900
       border border-zinc-100 dark:border-zinc-800
     ">
