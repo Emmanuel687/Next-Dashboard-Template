@@ -11,7 +11,7 @@
 
 export function FunnelKpiStrip({ kpis }) {
   return (
-    <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+    <div className="grid grid-cols-1 min-[480px]:grid-cols-2 lg:grid-cols-4 gap-3">
       {kpis.map((kpi) => (
         kpi.hero ? <HeroCard key={kpi.id} kpi={kpi} /> : <StatCard key={kpi.id} kpi={kpi} />
       ))}
@@ -21,7 +21,7 @@ export function FunnelKpiStrip({ kpis }) {
 
 function HeroCard({ kpi }) {
   return (
-    <div className="col-span-2 lg:col-span-1 bg-white dark:bg-zinc-900 border border-zinc-200/60 dark:border-white/6 rounded-xl px-5 py-4">
+    <div className="min-[480px]:col-span-2 lg:col-span-1 bg-white dark:bg-zinc-900 border border-zinc-200/60 dark:border-white/6 rounded-xl px-5 py-4">
       <p className="text-[32px] font-extrabold text-zinc-900 dark:text-zinc-50 leading-none tracking-tight">{kpi.value}</p>
       <p className="text-[12px] font-medium text-zinc-500 dark:text-zinc-400 mt-1.5">{kpi.label}</p>
       <DeltaBadge type={kpi.delta.type} text={kpi.delta.text} />

@@ -97,7 +97,7 @@ export default function MaintenanceJobDetail() {
             tabs={tabs}
             activeIndex={activeTab}
             onTabChange={setActiveTab}
-            contentClass="p-5"
+            contentClass="p-3 sm:p-5"
           />
         </div>
       </div>

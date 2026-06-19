@@ -132,7 +132,7 @@ export function AddLeadModal({ visible, columnId, onSubmit, onClose }) {
   );
 
   const footer = (
-    <div className="flex items-center justify-end gap-2 px-6 py-4 border-t border-zinc-100 dark:border-white/6">
+    <div className="flex items-center justify-end gap-2 px-4 py-4 sm:px-6 border-t border-zinc-100 dark:border-white/6">
       <button
         type="button"
         onClick={onClose}
@@ -168,7 +168,7 @@ export function AddLeadModal({ visible, columnId, onSubmit, onClose }) {
         // root = the whole dialog box → must carry bg, border, shadow
         root: {
           className: [
-            "w-full max-w-[520px] mx-4 flex flex-col",
+            "w-full max-w-[520px] flex flex-col",
             "bg-white dark:bg-zinc-900",
             "border border-zinc-200/60 dark:border-white/8",
             "rounded-2xl shadow-2xl overflow-hidden",
@@ -179,7 +179,7 @@ export function AddLeadModal({ visible, columnId, onSubmit, onClose }) {
           className: "fixed inset-0 z-[999] flex items-center justify-center bg-black/50 backdrop-blur-[2px] p-4",
         },
         header: {
-          className: "flex items-start justify-between gap-4 px-6 py-4 border-b border-zinc-100 dark:border-white/6 shrink-0",
+          className: "flex items-start justify-between gap-4 px-4 py-4 sm:px-6 border-b border-zinc-100 dark:border-white/6 shrink-0",
         },
         headerTitle: { className: "flex-1 min-w-0" },
         closeButton: {
@@ -198,7 +198,7 @@ export function AddLeadModal({ visible, columnId, onSubmit, onClose }) {
       <form
         onSubmit={handleSubmit}
         noValidate
-        className="px-6 py-4 flex flex-col gap-4 max-h-[60vh] overflow-y-auto"
+        className="px-4 py-4 sm:px-6 flex flex-col gap-4 max-h-[60vh] overflow-y-auto"
       >
         <SectionLabel icon="pi-user-circle" label="Personal Information" />
 
@@ -215,7 +215,7 @@ export function AddLeadModal({ visible, columnId, onSubmit, onClose }) {
         </Field>
 
         {/* Phone + Email */}
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <Field label="Phone" required error={errors.phone}>
             <InputText
               value={form.phone}
@@ -238,7 +238,7 @@ export function AddLeadModal({ visible, columnId, onSubmit, onClose }) {
         </div>
 
         {/* DOB + National ID */}
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <Field label="Date of Birth" required error={errors.dob}>
             {/* native date — PrimeReact Calendar adds heavy stylesheet deps */}
             <input

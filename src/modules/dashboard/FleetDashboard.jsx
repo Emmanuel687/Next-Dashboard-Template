@@ -74,7 +74,7 @@ export default function FleetDashboard() {
       />
 
       {/* KPI cards */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-6 gap-3">
+      <div className="grid grid-cols-1 min-[480px]:grid-cols-2 sm:grid-cols-3 xl:grid-cols-6 gap-3">
         {STATS.map((s) => <StatCard key={s.key} stat={s} />)}
       </div>
 

@@ -28,17 +28,21 @@ const PERIODS = ["Today", "Week", "Month", "Quarter"];
 
 function PeriodTabs({ active, onChange }) {
   return (
-    <div className="flex items-center gap-0.5 p-0.5 rounded-lg bg-zinc-100 dark:bg-white/[0.06]">
+    <div
+      role="group"
+      aria-label="Time period"
+      className="flex max-w-full items-center gap-0.5 overflow-x-auto rounded-lg border border-zinc-200/80 bg-zinc-200/70 p-0.5 [scrollbar-width:none] dark:border-transparent dark:bg-white/[0.06] [&::-webkit-scrollbar]:hidden"
+    >
       {PERIODS.map((p) => (
         <button
           key={p}
           type="button"
           onClick={() => onChange(p)}
           className={[
-            "h-7 px-3 rounded-md text-[12px] font-semibold transition-all",
+            "h-7 shrink-0 px-3 rounded-md text-[12px] font-semibold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#03b155]/30",
             active === p
-              ? "bg-white dark:bg-zinc-800 text-zinc-800 dark:text-zinc-100 shadow-sm"
-              : "text-zinc-500 dark:text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200",
+              ? "bg-[#03b155] text-white shadow-sm shadow-[#03b155]/20"
+              : "text-zinc-600 hover:bg-white/45 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-transparent dark:hover:text-zinc-200",
           ].join(" ")}
         >
           {p}
@@ -196,8 +200,8 @@ export default function AcquisitionFunnelPage() {
     <div className="flex flex-col gap-5">
 
       {/* ── Page header ── */}
-      <div className="flex flex-wrap items-start justify-between gap-4">
-        <div>
+      <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-start sm:justify-between gap-4">
+        <div className="min-w-0">
           <p className="text-[11px] font-semibold uppercase tracking-widest text-[#03b155] mb-1">
             Customer Acquisition
           </p>
@@ -209,7 +213,7 @@ export default function AcquisitionFunnelPage() {
           </p>
         </div>
 
-        <div className="flex flex-wrap items-center gap-2 mt-1">
+        <div className="flex w-full min-w-0 flex-wrap items-center gap-2 sm:w-auto sm:mt-1">
           <PeriodTabs active={period} onChange={setPeriod} />
           <GWButton variant="secondary" icon="pi-download" label="Export" />
           <GWButton variant="primary"   icon="pi-plus"     label="Add Lead" onClick={() => setAddLeadCol("new-lead")} />
@@ -220,7 +224,7 @@ export default function AcquisitionFunnelPage() {
       <FunnelKpiStrip kpis={FUNNEL_KPIS} />
 
       {/* ── Controls row ── */}
-      <div className="flex flex-wrap items-center justify-between gap-3">
+      <div className="flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between">
         {/* Filter chips */}
         <div className="flex items-center gap-2 flex-wrap">
           <FilterChip icon="pi-filter"   label="Owners"  active={activeFilter === "owners"}  onClick={() => setActiveFilter("owners")}  />
@@ -228,7 +232,7 @@ export default function AcquisitionFunnelPage() {
           <FilterChip icon="pi-calendar" label="Date"    active={activeFilter === "date"}    onClick={() => setActiveFilter("date")}    />
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center justify-between gap-3 sm:justify-start">
           {/* Assignee pills */}
           <div className="flex items-center gap-1">
             {ASSIGNEES.map((a) => (

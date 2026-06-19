@@ -20,8 +20,6 @@ import {
   ChevronLeft,
   ChevronRight,
   ChevronDown,
-  Sparkles,
-  ArrowRight,
 } from "lucide-react";
 
 const BRAND       = "#03b155";
@@ -311,32 +309,37 @@ export const Sidebar = ({ user, sidebarOpen, toggleSidebar, alertCount = 0 }) =>
           })}
         </nav>
 
-        {/* ── AI Assistant CTA ── */}
-        {!collapsed && (
-          <div className="px-3 py-2">
-            <Link
-              href="/ai-assistant"
-              className="
-                flex items-center gap-2.5 px-3 py-2.5 rounded-xl
-                bg-zinc-50 dark:bg-white/[0.04]
-                hover:bg-zinc-100 dark:hover:bg-white/[0.07]
-                border border-zinc-100 dark:border-white/[0.06]
-                transition-colors group
-              "
+        {/* ── User card footer ── */}
+        <div className={`
+          border-t border-zinc-100 dark:border-white/6 shrink-0
+          ${collapsed ? "px-1.5 py-3" : "p-2.5"}
+        `}>
+          <div className={`
+            flex items-center gap-2 rounded-lg px-2 py-1.5 cursor-pointer
+            hover:bg-zinc-50 dark:hover:bg-white/5 transition-colors
+            ${collapsed ? "justify-center px-0" : ""}
+          `}>
+            {/* Avatar — 30 px, green, initials */}
+            <div
+              className="w-[30px] h-[30px] rounded-full shrink-0 flex items-center justify-center text-white text-[11px] font-bold"
+              style={{ background: BRAND }}
             >
-              <div
-                className="w-6 h-6 rounded-md flex items-center justify-center shrink-0"
-                style={{ background: "linear-gradient(135deg, #7c3aed, #2563eb)" }}
-              >
-                <Sparkles size={13} className="text-white" />
+              {initials}
+            </div>
+
+            {/* Name + role — hidden when collapsed */}
+            {!collapsed && (
+              <div className="flex flex-col min-w-0 overflow-hidden">
+                <span className="text-[12.5px] font-medium text-zinc-900 dark:text-zinc-100 truncate leading-snug">
+                  {user?.name ?? "GreenWheels"}
+                </span>
+                <span className="text-[10.5px] text-zinc-400 dark:text-zinc-500 truncate leading-snug mt-px">
+                  {roleName}
+                </span>
               </div>
-              <span className="text-[12px] font-medium text-zinc-600 dark:text-zinc-400 flex-1">
-                AI Assistant
-              </span>
-              <ArrowRight size={13} className="text-zinc-400 dark:text-zinc-600 group-hover:text-zinc-700 dark:group-hover:text-zinc-300 group-hover:translate-x-0.5 transition-all" />
-            </Link>
+            )}
           </div>
-        )}
+        </div>
 
       </aside>
     </>

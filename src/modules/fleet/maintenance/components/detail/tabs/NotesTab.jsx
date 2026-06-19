@@ -15,7 +15,7 @@ export function NotesTab({ notes }) {
     setList((prev) => [
       {
         id: Date.now(),
-        author: "Emmanuel",
+        author: "User",
         role: "Operations",
         initials: "EM",
         date: new Date().toLocaleString("en-GB", { dateStyle: "medium", timeStyle: "short" }),

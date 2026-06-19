@@ -256,60 +256,44 @@ export default function LoginPage() {
 
           </form>
 
-          {/* External partner */}
-          <p className="text-center text-sm text-zinc-500 dark:text-zinc-400 mt-6">
-            External partner?{' '}
-            <a
-              href="#"
-              className="font-medium hover:opacity-75 transition-opacity"
-              style={{ color: BRAND }}
-            >
-              Create an account
-            </a>
-          </p>
-
         </div>
       </section>
 
       {/* ── RIGHT: Brand panel ── */}
       <section
         className="hidden lg:flex flex-col justify-center px-14 py-14"
-        style={{ background: 'linear-gradient(145deg, #03b155 0%, #028c42 100%)' }}
+        style={{
+          backgroundColor: '#e7f2eb',
+          backgroundImage: [
+            'radial-gradient(62% 55% at 84% 4%,  rgba(3,177,85,.34)  0%, transparent 60%)',
+            'radial-gradient(58% 52% at 2% 14%,  rgba(57,145,128,.26) 0%, transparent 58%)',
+            'radial-gradient(64% 58% at 98% 98%, rgba(57,142,105,.34) 0%, transparent 60%)',
+            'radial-gradient(48% 46% at 6% 94%,  rgba(255,219,75,.22) 0%, transparent 56%)',
+          ].join(', '),
+          borderLeft: '1px solid #d0e8dc',
+        }}
         aria-hidden="true"
       >
-        {/* Logo watermark */}
-        <div
-          className="inline-flex items-center self-start mb-12 px-3 py-2 rounded-lg"
-          style={{ background: 'rgba(255,255,255,0.15)' }}
-        >
-          <img
-            src={LOGO_URL}
-            alt="GreenWheels"
-            className="h-6 w-auto object-contain"
-            style={{ maxWidth: 140, filter: 'brightness(0) invert(1)' }}
-          />
-        </div>
-
         {/* Headline */}
-        <h2 className="text-[34px] font-bold text-white leading-snug mb-8 max-w-[340px]">
-          The operating system<br />for e-mobility leasing.
+        <h2 className="text-[30px] font-bold leading-snug mb-8 max-w-85" style={{ color: '#0f1f18', letterSpacing: '-.6px' }}>
+          The operating system for e-mobility.
         </h2>
 
         {/* Feature bullets */}
         <ul className="space-y-3.5">
           {FEATURES.map((item) => (
-            <li key={item} className="flex items-start gap-3">
+            <li key={item} className="flex items-center gap-3">
               <svg
-                className="mt-0.5 shrink-0"
-                width="17" height="17" viewBox="0 0 24 24"
-                fill="none" stroke="rgba(255,255,255,0.9)"
-                strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+                className="shrink-0"
+                width="19" height="19" viewBox="0 0 24 24"
+                fill="none" stroke={BRAND}
+                strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
                 aria-hidden="true"
               >
                 <circle cx="12" cy="12" r="10" />
                 <path d="m9 12 2 2 4-4" />
               </svg>
-              <span className="text-sm text-white/90 leading-snug">{item}</span>
+              <span className="text-sm leading-snug" style={{ color: '#4a6358' }}>{item}</span>
             </li>
           ))}
         </ul>

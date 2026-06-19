@@ -22,7 +22,7 @@ export function JobHeader({ job }) {
       <div className="px-5 py-4 flex flex-col gap-3">
 
         {/* Breadcrumb */}
-        <nav className="flex items-center gap-1.5 text-[11.5px] text-zinc-400">
+        <nav className="flex items-center gap-1.5 overflow-x-auto whitespace-nowrap text-[11.5px] text-zinc-400 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           <Link href="/fleet/maintenance" className="hover:text-[#03b155] transition-colors">
             Maintenance
           </Link>
@@ -36,7 +36,7 @@ export function JobHeader({ job }) {
 
         {/* Title row */}
         <div className="flex flex-wrap items-start justify-between gap-3">
-          <div className="flex flex-col gap-1">
+          <div className="min-w-0 flex flex-col gap-1">
             <div className="flex items-center gap-3">
               <h1 className="text-[22px] font-bold text-zinc-900 dark:text-white leading-tight">
                 {job.id}
@@ -44,7 +44,7 @@ export function JobHeader({ job }) {
               <JobStatusTag status={job.status} />
             </div>
             <p className="text-[14px] font-semibold text-zinc-500 dark:text-zinc-400">{job.title}</p>
-            <p className="text-[12px] text-zinc-400 dark:text-zinc-500">
+            <p className="text-[12px] text-zinc-400 dark:text-zinc-500 break-words">
               {job.vehicle.id}
               <span className="mx-1.5">·</span>
               {job.vehicle.plate}
@@ -54,7 +54,7 @@ export function JobHeader({ job }) {
           </div>
 
           {/* Actions */}
-          <div className="flex items-center flex-wrap gap-2">
+          <div className="flex w-full items-center flex-wrap gap-2 sm:w-auto">
             {/* PrimeReact SplitButton — no native equivalent */}
             <SplitButton
               label="Update Status"

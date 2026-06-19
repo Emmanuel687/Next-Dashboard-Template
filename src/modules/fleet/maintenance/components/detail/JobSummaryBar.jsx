@@ -29,7 +29,7 @@ function CircularProgress({ value, size = 56, stroke = 5 }) {
 export function JobSummaryBar({ job }) {
   return (
     <GWCard>
-      <div className="grid grid-cols-2 sm:grid-cols-4 divide-x divide-y sm:divide-y-0 divide-zinc-100 dark:divide-white/[0.06]">
+      <div className="grid grid-cols-1 min-[480px]:grid-cols-2 sm:grid-cols-4 divide-y min-[480px]:divide-x sm:divide-y-0 divide-zinc-100 dark:divide-white/[0.06]">
 
         {/* Priority */}
         <div className="flex items-center gap-3 px-5 py-4">

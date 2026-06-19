@@ -173,8 +173,9 @@ function SearchModal({ open, onClose, placeholder }) {
 function NotificationPanel({ notifications, onClose, onClearAll }) {
   return (
     <div className="
-      absolute right-0 top-[calc(100%+8px)] z-100
-      w-90 max-w-[calc(100vw-16px)] rounded-2xl overflow-hidden shadow-xl
+      fixed left-2 right-2 top-[66px] z-100
+      w-auto rounded-2xl overflow-hidden shadow-xl
+      sm:absolute sm:left-auto sm:right-0 sm:top-[calc(100%+8px)] sm:w-90
       bg-white dark:bg-zinc-900
       border border-zinc-100 dark:border-zinc-800
     ">
@@ -319,7 +320,8 @@ export const Topbar = ({ toggleSidebar, user, onLogout }) => {
   }, []);
 
   const initials = user?.name?.split(" ").map((n) => n[0]).join("").slice(0, 2) || "GW";
-  const roleName = user?.role_label || user?.roles?.[0] || "Admin";
+  const primaryRole = user?.roles?.[0];
+  const roleName = user?.role_label || (primaryRole === "*" ? "Administrator" : primaryRole) || "Admin";
 
   return (
     <>
@@ -329,7 +331,7 @@ export const Topbar = ({ toggleSidebar, user, onLogout }) => {
         placeholder={meta.search}
       />
 
-      <header className="h-13.5 px-4 flex items-center justify-between shrink-0 bg-white dark:bg-[#111318] border-b border-zinc-100 dark:border-white/6">
+      <header className="h-[58px] px-2 sm:px-4 flex items-center justify-between shrink-0 bg-white dark:bg-[#111318] border-b border-zinc-100 dark:border-white/6">
 
         {/* ── LEFT: mobile toggle + breadcrumb ── */}
         <div className="flex items-center gap-3 min-w-0">
@@ -362,7 +364,7 @@ export const Topbar = ({ toggleSidebar, user, onLogout }) => {
         </div>
 
         {/* ── RIGHT: actions ── */}
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-0.5 sm:gap-1">
 
           {/* Search icon — mobile only */}
           <IconBtn onClick={() => setSearchOpen(true)} className="sm:hidden">
@@ -399,12 +401,12 @@ export const Topbar = ({ toggleSidebar, user, onLogout }) => {
           </div>
 
           {/* Settings */}
-          <IconBtn onClick={() => router.push("/settings")} title="Settings">
+          <IconBtn onClick={() => router.push("/settings")} title="Settings" className="hidden sm:flex">
             <Settings size={16} />
           </IconBtn>
 
           {/* Divider */}
-          <div className="w-px h-5 bg-zinc-100 dark:bg-white/8 mx-1 shrink-0" />
+          <div className="hidden sm:block w-px h-5 bg-zinc-100 dark:bg-white/8 mx-1 shrink-0" />
 
           {/* User pill */}
           <button
@@ -417,11 +419,11 @@ export const Topbar = ({ toggleSidebar, user, onLogout }) => {
             >
               {initials}
             </div>
-            <div className="hidden md:block text-left leading-tight">
-              <p className="text-[12px] font-semibold text-zinc-800 dark:text-zinc-200 leading-tight">
+            <div className="hidden md:flex h-7 flex-col justify-center gap-0.5 text-left">
+              <p className="text-[12px] font-semibold leading-none text-zinc-800 dark:text-zinc-200">
                 {user?.name || "User"}
               </p>
-              <p className="text-[10px] text-zinc-400 dark:text-zinc-500 leading-tight">
+              <p className="text-[10px] leading-none text-zinc-400 dark:text-zinc-500">
                 {roleName}
               </p>
             </div>

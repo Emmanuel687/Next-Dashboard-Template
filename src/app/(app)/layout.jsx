@@ -26,12 +26,12 @@ export default function AppLayout({ children }) {
   }
 
   const user = {
-    name: "Emmanuel",
+    name: "User",
     roles: ["*"],
   };
 
   return (
-    <main className="flex h-screen overflow-hidden">
+    <main className="flex h-full min-h-0 w-full overflow-hidden">
       {/* Sidebar  Start */}
       <Sidebar
         user={user}
@@ -42,11 +42,11 @@ export default function AppLayout({ children }) {
       {/* Sidebar  End */}  
 
       {/* Main  */}
-      <div className="flex flex-col flex-1 overflow-hidden bg-[#f3f4f6] dark:bg-zinc-950">
+      <div className="flex min-h-0 min-w-0 flex-col flex-1 overflow-hidden bg-[#f3f4f6] dark:bg-zinc-950">
         <Topbar toggleSidebar={toggleSidebar} user={user} onLogout={onLogout} />
 
 
-        <main className="flex-1 overflow-y-auto p-3 sm:p-5 lg:p-6">
+        <main className="min-h-0 min-w-0 flex-1 overflow-x-hidden overflow-y-auto overscroll-contain p-3 sm:p-5 lg:p-6">
           {children}
         </main>
       </div>

@@ -16,8 +16,8 @@
 
 export function GWPageHeader({ eyebrow, title, subtitle, action }) {
   return (
-    <div className="flex flex-wrap items-start justify-between gap-3">
-      <div>
+    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
+      <div className="min-w-0">
         {eyebrow && (
           <p className="text-[11px] font-semibold uppercase tracking-widest text-[#03b155] mb-1">
             {eyebrow}
@@ -33,7 +33,7 @@ export function GWPageHeader({ eyebrow, title, subtitle, action }) {
         )}
       </div>
       {action && (
-        <div className="flex items-center gap-2 shrink-0">
+        <div className="flex w-full flex-wrap items-center gap-2 sm:w-auto sm:shrink-0">
           {action}
         </div>
       )}

@@ -74,8 +74,8 @@ export default function PlaceholderPage({
     <div className="flex flex-col gap-5">
 
       {/* ── Page header ── */}
-      <div className="flex flex-wrap items-start justify-between gap-4">
-        <div>
+      <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-start sm:justify-between gap-4">
+        <div className="min-w-0">
           {eyebrow && (
             <p className="text-[11px] font-semibold uppercase tracking-widest text-[#03b155] mb-1">
               {eyebrow}
@@ -92,7 +92,7 @@ export default function PlaceholderPage({
         </div>
 
         {(primaryAction || secondaryAction) && (
-          <div className="flex items-center gap-2 shrink-0 mt-1">
+          <div className="flex w-full flex-wrap items-center gap-2 sm:w-auto sm:shrink-0 sm:mt-1">
             {secondaryAction && (
               <GWButton
                 variant="secondary"
@@ -113,7 +113,7 @@ export default function PlaceholderPage({
 
       {/* ── Stats strip ── */}
       {stats && stats.length > 0 && (
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+        <div className="grid grid-cols-1 min-[480px]:grid-cols-2 lg:grid-cols-4 gap-3">
           {stats.map((stat, i) => (
             <StatCard key={i} stat={stat} />
           ))}
@@ -122,7 +122,7 @@ export default function PlaceholderPage({
 
       {/* ── Empty-state card ── */}
       <GWCard>
-        <div className="flex flex-col items-center justify-center py-16 px-6 text-center">
+        <div className="flex flex-col items-center justify-center px-4 py-10 text-center sm:px-6 sm:py-16">
           <div className="w-16 h-16 rounded-2xl flex items-center justify-center bg-[#03b155]/10 mb-5">
             <i className={`pi ${icon} text-[28px] text-[#03b155]`} aria-hidden="true" />
           </div>

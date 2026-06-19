@@ -53,8 +53,8 @@ export default function WorkshopQueuePage() {
     <div className="flex flex-col gap-5">
 
       {/* ── Page header ── */}
-      <div className="flex flex-wrap items-start justify-between gap-4">
-        <div>
+      <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-start sm:justify-between gap-4">
+        <div className="min-w-0">
           <p className="text-[11px] font-semibold uppercase tracking-widest text-[#03b155] mb-1">
             Maintenance
           </p>
@@ -66,7 +66,7 @@ export default function WorkshopQueuePage() {
           </p>
         </div>
 
-        <div className="flex items-center gap-2 mt-1">
+        <div className="flex w-full flex-wrap items-center gap-2 sm:w-auto sm:mt-1">
           <GWButton variant="secondary" icon="pi-filter" label="Filter" />
           <GWButton variant="primary"   icon="pi-plus"   label="New Job" />
         </div>
@@ -79,7 +79,7 @@ export default function WorkshopQueuePage() {
       <GWCard>
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 px-4 py-3 border-b border-zinc-100 dark:border-white/[0.06]">
           {/* Status filter pills */}
-          <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none pb-0.5 sm:pb-0 flex-wrap">
+          <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none pb-0.5 sm:pb-0 sm:flex-wrap">
             {FILTERS.map((f) => (
               <button
                 key={f}

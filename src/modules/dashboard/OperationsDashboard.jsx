@@ -46,12 +46,13 @@ export default function OperationsDashboard() {
     <div className="flex flex-col gap-5">
 
       {/* ── Page header ───────────────────────────────────────── */}
-      <div className="flex flex-wrap items-start justify-between gap-4">
-        <div>
+      <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-start sm:justify-between gap-4">
+        <div className="min-w-0">
           <p className="text-[11px] font-semibold uppercase tracking-widest text-[#03b155] mb-1">
             Operations
           </p>
-          <h1 className="text-[20px] font-bold text-[#0f1f18] leading-tight">
+        
+                  <h1 className="text-[22px] font-bold text-[#0f1f18] dark:text-zinc-50 leading-tight">
             Operations Dashboard
           </h1>
           <p className="text-[12px] text-zinc-500 dark:text-zinc-400 mt-0.5">
@@ -59,7 +60,7 @@ export default function OperationsDashboard() {
           </p>
         </div>
 
-        <div className="flex items-center gap-2 flex-wrap shrink-0">
+        <div className="flex w-full min-w-0 flex-wrap items-center gap-2 sm:w-auto sm:shrink-0">
           <PeriodTabs tabs={PERIOD_TABS} active={period} onChange={setPeriod} />
           <GWButton variant="ghost" size="sm" icon="pi-download"  label="Export"           />
           <GWButton variant="ghost" size="sm" icon="pi-calendar"  label="Schedule Report"  />
