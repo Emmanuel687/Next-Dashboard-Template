@@ -1,5 +1,5 @@
-import FleetDashboard from "@/modules/dashboard/FleetDashboard";
+import OperationsDashboard from "@/modules/dashboard/OperationsDashboard";
 
 export default function Page() {
-  return <FleetDashboard />;
+  return <OperationsDashboard />;
 }

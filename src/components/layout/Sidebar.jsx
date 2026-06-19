@@ -5,24 +5,21 @@ import Link from "next/link";
 import { useState } from "react";
 import {
   LayoutDashboard,
-  Users,
-  UserCheck,
-  Truck,
-  MapPin,
-  Wrench,
-  AlertTriangle,
-  Radio,
-  CreditCard,
-  AlignLeft,
-  Laptop,
-  GraduationCap,
   Bike,
+  FileText,
+  Zap,
+  TrendingUp,
+  Users,
+  UserPlus,
+  Wrench,
+  ClipboardList,
+  MapPin,
+  Package,
+  BarChart2,
+  Settings,
   ChevronLeft,
   ChevronRight,
-  Bell,
-  LogOut,
   ChevronDown,
-  CheckCircle2,
   Sparkles,
   ArrowRight,
 } from "lucide-react";
@@ -33,69 +30,41 @@ const SIDEBAR_DARK = "#111318";
 
 const NAV = [
   {
-    section: "Overview",
+    section: null,
     items: [
       { label: "Dashboard", href: "/dashboard", icon: LayoutDashboard, roles: ["*"] },
     ],
   },
   {
-    section: "Acquisition",
-    module: "acquisition",
-    roles: ["customer_ops.acquisition.agent", "customer_ops.acquisition.manager"],
+    section: "Operations",
     items: [
-      { label: "Lead Pipeline",  href: "/acquisition/leads",         icon: Users,        roles: ["customer_ops.acquisition.agent", "customer_ops.acquisition.manager"] },
-      { label: "Qualification",  href: "/acquisition/qualification", icon: UserCheck,    roles: ["customer_ops.acquisition.agent", "customer_ops.acquisition.manager"] },
-      { label: "Readiness",      href: "/acquisition/readiness",     icon: CheckCircle2, roles: ["customer_ops.acquisition.manager"] },
+      { label: "Fleet",            href: "/fleet",     icon: Bike,     roles: ["*"] },
+      { label: "Lease Contracts",  href: "/contracts", icon: FileText, roles: ["*"] },
+      { label: "Battery & Energy", href: "/energy",    icon: Zap,      roles: ["*"] },
     ],
   },
   {
-    section: "Customer Success",
-    module: "customer-success",
-    roles: ["customer_ops.success.coach", "customer_ops.success.manager"],
+    section: "Customer Acquisition",
     items: [
-      { label: "Coaching Pool", href: "/customer-success/coaching",    icon: Users,          roles: ["customer_ops.success.coach", "customer_ops.success.manager"] },
-      { label: "Performance",   href: "/customer-success/performance", icon: LayoutDashboard,roles: ["customer_ops.success.coach", "customer_ops.success.manager"] },
-      { label: "Support Queue", href: "/customer-success/support",     icon: Bell,           roles: ["customer_ops.success.coach", "customer_ops.success.manager"], badge: true },
+      { label: "Acquisition Funnel", href: "/pipeline",  icon: TrendingUp, roles: ["*"] },
+      { label: "Customers",          href: "/customers", icon: Users,      roles: ["*"], badgeCount: 3 },
+      { label: "Leads",              href: "/leads",     icon: UserPlus,   roles: ["*"] },
     ],
   },
   {
-    section: "Fleet",
-    module: "fleet",
-    roles: ["fleet_ops.engineer", "fleet_ops.dispatcher", "fleet_ops.manager"],
+    section: "Maintenance",
     items: [
-      { label: "Vehicle Grid",     href: "/fleet/vehicles",    icon: Bike,  roles: ["fleet_ops.engineer", "fleet_ops.dispatcher", "fleet_ops.manager"] },
-      { label: "Workshop Queue",   href: "/fleet/workshop",    icon: Wrench,roles: ["fleet_ops.engineer", "fleet_ops.manager"] },
-      { label: "Yard Map",         href: "/fleet/yard-map",    icon: MapPin,roles: ["fleet_ops.dispatcher", "fleet_ops.manager"] },
-      { label: "Maintenance Jobs", href: "/fleet/maintenance", icon: Truck, roles: ["fleet_ops.engineer", "fleet_ops.manager"] },
+      { label: "Workshop Queue",   href: "/maintenance/queue", icon: Wrench,        roles: ["*"], badgeCount: 12 },
+      { label: "Maintenance Jobs", href: "/maintenance/jobs",  icon: ClipboardList, roles: ["*"] },
+      { label: "Yard Map",         href: "/maintenance/yard",  icon: MapPin,        roles: ["*"] },
+      { label: "Parts Inventory",  href: "/maintenance/parts", icon: Package,       roles: ["*"] },
     ],
   },
   {
-    section: "Incidents & ERT",
-    module: "ert",
-    roles: ["fleet_ops.dispatcher", "fleet_ops.irc.manager", "fleet_ops.irc.agent"],
+    section: "System",
     items: [
-      { label: "Live Incidents", href: "/ert/incidents", icon: AlertTriangle, roles: ["fleet_ops.dispatcher", "fleet_ops.irc.manager", "fleet_ops.irc.agent"], badge: true },
-      { label: "Dispatch Board", href: "/ert/dispatch",  icon: Radio,         roles: ["fleet_ops.dispatcher", "fleet_ops.irc.manager"] },
-    ],
-  },
-  {
-    section: "Collections",
-    module: "collections",
-    roles: ["finance_ops.collections.associate", "finance_ops.manager"],
-    items: [
-      { label: "Overdue Accounts", href: "/collections/overdue",   icon: CreditCard, roles: ["finance_ops.collections.associate", "finance_ops.manager"] },
-      { label: "Age Bands",        href: "/collections/age-bands", icon: AlignLeft,  roles: ["finance_ops.collections.associate", "finance_ops.manager"] },
-      { label: "Dunning Timeline", href: "/collections/dunning",   icon: AlignLeft,  roles: ["finance_ops.manager"] },
-    ],
-  },
-  {
-    section: "IT & Training",
-    module: "it",
-    roles: ["it_ops.engineer", "it_ops.manager", "customer_ops.training.agent"],
-    items: [
-      { label: "Asset Register",    href: "/it/assets",     icon: Laptop,        roles: ["it_ops.engineer", "it_ops.manager"] },
-      { label: "Training Pipeline", href: "/it/training",   icon: GraduationCap, roles: ["customer_ops.training.agent", "it_ops.manager"] },
-      { label: "Loss Cases",        href: "/it/loss-cases", icon: AlertTriangle, roles: ["it_ops.manager"] },
+      { label: "Reports",  href: "/reports",  icon: BarChart2, roles: ["*"] },
+      { label: "Settings", href: "/settings", icon: Settings,  roles: ["*"] },
     ],
   },
 ];
@@ -180,7 +149,7 @@ export const Sidebar = ({ user, sidebarOpen, toggleSidebar, alertCount = 0 }) =>
   const pathname = usePathname();
   const [collapsed, setCollapsed] = useState(false);
   const [expandedSections, setExpandedSections] = useState(
-    NAV.reduce((acc, s) => ({ ...acc, [s.section]: true }), {})
+    NAV.reduce((acc, s) => ({ ...acc, [s.section ?? "__root__"]: true }), {})
   );
 
   const userRoles = user?.roles || [];
@@ -256,14 +225,15 @@ export const Sidebar = ({ user, sidebarOpen, toggleSidebar, alertCount = 0 }) =>
             if (section.module && !canSeeSection(section, userRoles)) return null;
             const visibleItems = section.items.filter((item) => canSeeItem(item, userRoles));
             if (visibleItems.length === 0) return null;
-            const isExpanded = expandedSections[section.section] !== false;
+            const sectionKey = section.section ?? "__root__";
+            const isExpanded = expandedSections[sectionKey] !== false;
 
             return (
-              <div key={section.section} className={si > 0 ? "mt-4" : ""}>
+              <div key={sectionKey} className={si > 0 ? "mt-4" : ""}>
 
-                {!collapsed && (
+                {!collapsed && section.section && (
                   <button
-                    onClick={() => toggleSection(section.section)}
+                    onClick={() => toggleSection(sectionKey)}
                     className="group w-full flex items-center justify-between px-4 h-[24px] mb-1"
                   >
                     <span className="text-[10px] font-semibold uppercase tracking-[0.08em] text-zinc-400 dark:text-zinc-600 group-hover:text-zinc-600 dark:group-hover:text-zinc-400 transition-colors">
@@ -281,7 +251,7 @@ export const Sidebar = ({ user, sidebarOpen, toggleSidebar, alertCount = 0 }) =>
                     {visibleItems.map((item) => {
                       const Icon   = item.icon;
                       const active = isActive(item.href);
-                      const count  = item.badge ? alertCount : 0;
+                      const count  = item.badgeCount ?? (item.badge ? alertCount : 0);
 
                       if (collapsed) {
                         return (

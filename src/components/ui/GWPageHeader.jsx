@@ -14,11 +14,16 @@
  *   />
  */
 
-export function GWPageHeader({ title, subtitle, action }) {
+export function GWPageHeader({ eyebrow, title, subtitle, action }) {
   return (
     <div className="flex flex-wrap items-start justify-between gap-3">
       <div>
-        <h1 className="text-[20px] font-bold text-zinc-900 dark:text-white leading-tight">
+        {eyebrow && (
+          <p className="text-[11px] font-semibold uppercase tracking-widest text-[#03b155] mb-1">
+            {eyebrow}
+          </p>
+        )}
+        <h1 className="text-[20px] font-bold text-[#03b155] leading-tight">
           {title}
         </h1>
         {subtitle && (
